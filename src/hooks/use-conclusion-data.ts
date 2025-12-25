@@ -5,13 +5,21 @@ import { keyToModel } from "@/utils/conclusion-key-mapper";
  * Custom hook to wrap RTK Query and provide Redux-slice-like interface
  * This allows the form component to work with minimal changes
  */
-export function useConclusionData(selectedKey: string) {
+export function useConclusionData(
+  selectedKey: string,
+  ageType?: string,
+  gender?: string
+) {
   // Map frontend key to backend model name
   const model = keyToModel(selectedKey);
 
   // Fetch data using RTK Query
   const { data, isLoading, isError, error } =
-    useGetConclusionRecommendationsQuery(model);
+    useGetConclusionRecommendationsQuery({
+      key: model,
+      ageType,
+      gender,
+    });
 
   return {
     conclusionRecommendationList: data?.data || [],

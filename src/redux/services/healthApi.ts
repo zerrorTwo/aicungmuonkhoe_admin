@@ -12,15 +12,24 @@ export const healthApi = baseApi.injectEndpoints({
     // Get all conclusion recommendations by key
     getConclusionRecommendations: builder.query<
       ApiResponse<ConclusionRecommendation[]>,
-      string
+      { key: string; ageType?: string; gender?: string }
     >({
-      query: (key) => {
+      query: ({ key, ageType, gender }) => {
         // Map frontend key to backend model name
         const model = keyToModel(key);
-        return `/conclusion-recommendations?model=${model}`;
+        const params = new URLSearchParams({ model });
+        
+        if (ageType) {
+          params.append('ageType', ageType);
+        }
+        if (gender) {
+          params.append('gender', gender);
+        }
+        
+        return `/conclusion-recommendations?${params.toString()}`;
       },
-      providesTags: (result, error, key) => [
-        { type: "ConclusionRecommendation", id: key },
+      providesTags: (result, error, { key, ageType, gender }) => [
+        { type: "ConclusionRecommendation", id: `${key}-${ageType || ''}-${gender || ''}` },
       ],
     }),
 

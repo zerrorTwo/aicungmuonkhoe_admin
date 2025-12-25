@@ -12,7 +12,8 @@ const baseQueryWithAuth: BaseQueryFn<
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   const baseQuery = fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api",
+    baseUrl:
+      import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/v1/api/admin",
     prepareHeaders: (headers) => {
       // Get token from localStorage
       const token = localStorage.getItem("accessToken");

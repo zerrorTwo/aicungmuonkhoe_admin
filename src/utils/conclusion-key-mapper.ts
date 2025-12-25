@@ -7,7 +7,7 @@ export const CONCLUSION_KEY_TO_MODEL: Record<string, string> = {
   [ConclusionRecommendationKey.BloodPressureHome]: "HOME",
 
   // Blood Sugar
-  [ConclusionRecommendationKey.BloodSugarFasting]: "GLUCOSE_FASTING",
+  [ConclusionRecommendationKey.BloodSugarFasting]: "HUNGRY",
   [ConclusionRecommendationKey.BloodSugar2H]: "2_HOURS",
   [ConclusionRecommendationKey.BloodSugarHbA1c]: "HBA1C",
 
