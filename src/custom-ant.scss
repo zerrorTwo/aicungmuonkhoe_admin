@@ -1,0 +1,39 @@
+/* Ant Design Custom Styles */
+
+.ant-layout {
+  background: var(--gray-soft-color);
+}
+
+.ant-layout-header {
+  background: var(--white-color);
+  padding: 0 var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.ant-layout-sider {
+  background: var(--white-color);
+}
+
+.ant-menu {
+  border-right: none;
+}
+
+.ant-table-thead > tr > th {
+  background-color: var(--blue-dark-color);
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.ant-table-cell {
+  padding: 0.8rem !important;
+}
+
+.ant-btn-primary {
+  background-color: var(--blue-primary-color);
+  border-color: var(--blue-primary-color);
+}
+
+.ant-btn-primary:hover {
+  background-color: var(--blue-dark-color);
+  border-color: var(--blue-dark-color);
+}

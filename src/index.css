@@ -1,0 +1,86 @@
+:root {
+  /* Colors */
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --gray-soft-color: #f5f5f5;
+  --gray-light-color: #d9d9d9;
+  --gray-medium-color: #8c8c8c;
+  --gray-dark-color: #595959;
+  --blue-primary-color: #1890ff;
+  --blue-dark-color: #0050b3;
+  --blue-light-color: #e6f7ff;
+  --green-success-color: #52c41a;
+  --red-error-color: #ff4d4f;
+  --orange-warning-color: #faad14;
+
+  /* Layout */
+  --header-height: 64px;
+  --sidebar-width: 280px;
+
+  /* Spacing */
+  --spacing-xs: 0.4rem;
+  --spacing-sm: 0.8rem;
+  --spacing-md: 1.4rem;
+  --spacing-lg: 2.4rem;
+
+  /* Border Radius */
+  --border-radius-sm: 0.4rem;
+  --border-radius-md: 0.8rem;
+  --border-radius-lg: 1rem;
+
+  /* Shadows */
+  --shadow-sm: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: var(--black-color);
+  background-color: var(--gray-soft-color);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-soft-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-light-color);
+  border-radius: var(--border-radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-medium-color);
+}

@@ -1,0 +1,22 @@
+import { useGetConclusionRecommendationsQuery } from "@/redux/services/healthApi";
+import { keyToModel } from "@/utils/conclusion-key-mapper";
+
+/**
+ * Custom hook to wrap RTK Query and provide Redux-slice-like interface
+ * This allows the form component to work with minimal changes
+ */
+export function useConclusionData(selectedKey: string) {
+  // Map frontend key to backend model name
+  const model = keyToModel(selectedKey);
+
+  // Fetch data using RTK Query
+  const { data, isLoading, isError, error } =
+    useGetConclusionRecommendationsQuery(model);
+
+  return {
+    conclusionRecommendationList: data?.data || [],
+    loading: isLoading,
+    messageInfo: null, // Can be enhanced later for error messages
+    error: isError ? error : null,
+  };
+}
