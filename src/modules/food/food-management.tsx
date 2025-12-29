@@ -66,34 +66,50 @@ export default function FoodManagement() {
 
     return (
         <div css={rootStyles}>
-            <div css={headerStyles}>
-                <Typography.Title level={4}>Quản lý món ăn</Typography.Title>
-                <Button type="primary" icon={<PlusOutlined />}>
-                    Thêm món ăn mới
-                </Button>
-            </div>
+            <Typography.Title css={titleStyles} level={5}>
+                Quản lý món ăn
+            </Typography.Title>
 
-            <div css={searchStyles}>
-                <Search placeholder="Tìm kiếm món ăn..." style={{ width: 400 }} />
-            </div>
+            <div css={contentStyles}>
+                <div css={headerStyles}>
+                    <Search placeholder="Tìm kiếm món ăn..." style={{ width: 400 }} />
+                    <Button type="primary" icon={<PlusOutlined />}>
+                        Thêm món ăn mới
+                    </Button>
+                </div>
 
-            <Table columns={columns} dataSource={data} />
+                <Table columns={columns} dataSource={data} />
+            </div>
         </div>
     )
 }
 
 const rootStyles = css`
+  background: var(--gray-soft-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  padding: 1.4rem 2.4rem 0;
+  min-height: calc(100vh - var(--header-height));
+`
+
+const titleStyles = css`
+  padding: 1.4rem;
   background: var(--white-color);
-  padding: var(--spacing-lg);
+  margin-bottom: 0 !important;
+  border-radius: 1rem;
+`
+
+const contentStyles = css`
+  background: var(--white-color);
+  padding: 1.4rem;
+  border-radius: 1rem;
+  flex: 1;
 `
 
 const headerStyles = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-lg);
-`
-
-const searchStyles = css`
-  margin-bottom: var(--spacing-md);
+  margin-bottom: 1.4rem;
 `

@@ -60,16 +60,18 @@ export const TYPE_1_OPTIONS: DropdownOption[] = [
   { code: "OBESE", name: "Béo phì", type: "TYPE_1" },
 ];
 
+export const ALL_DROPDOWN_OPTIONS: DropdownOption[] = [
+  ...AGE_TYPE_OPTIONS,
+  ...INDICATOR_OPTIONS,
+  ...TYPE_OPTIONS,
+  ...TYPE_1_OPTIONS,
+];
+
 /**
  * Get all dropdown options
  */
 export function getAllDropdownOptions(): DropdownOption[] {
-  return [
-    ...AGE_TYPE_OPTIONS,
-    ...INDICATOR_OPTIONS,
-    ...TYPE_OPTIONS,
-    ...TYPE_1_OPTIONS,
-  ];
+  return ALL_DROPDOWN_OPTIONS;
 }
 
 /**

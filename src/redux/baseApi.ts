@@ -16,7 +16,7 @@ const baseQueryWithAuth: BaseQueryFn<
       import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/v1/api/admin",
     prepareHeaders: (headers) => {
       // Get token from localStorage
-      const token = localStorage.getItem("accessToken");
+      const token = localStorage.getItem("token");
 
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
@@ -33,6 +33,6 @@ const baseQueryWithAuth: BaseQueryFn<
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithAuth,
-  tagTypes: ["ConclusionRecommendation", "User", "Health"],
+  tagTypes: ["ConclusionRecommendation", "User", "Health", "Banner"],
   endpoints: () => ({}),
 });

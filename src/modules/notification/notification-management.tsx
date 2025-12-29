@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Typography, Table, Button, Space, Input } from 'antd'
+import { Typography, Table, Button, Space, Input, Tag } from 'antd'
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
 const { Search } = Input
@@ -26,6 +26,11 @@ export default function NotificationManagement() {
             title: 'Trạng thái',
             dataIndex: 'status',
             key: 'status',
+            render: (status: string) => (
+                <Tag color={status === 'Đã gửi' ? 'green' : 'gray'}>
+                    {status}
+                </Tag>
+            ),
         },
         {
             title: 'Thao tác',
@@ -51,34 +56,50 @@ export default function NotificationManagement() {
 
     return (
         <div css={rootStyles}>
-            <div css={headerStyles}>
-                <Typography.Title level={4}>Quản lý thông báo</Typography.Title>
-                <Button type="primary" icon={<PlusOutlined />}>
-                    Tạo thông báo mới
-                </Button>
-            </div>
+            <Typography.Title css={titleStyles} level={5}>
+                Quản lý thông báo
+            </Typography.Title>
 
-            <div css={searchStyles}>
-                <Search placeholder="Tìm kiếm thông báo..." style={{ width: 300 }} />
-            </div>
+            <div css={contentStyles}>
+                <div css={headerStyles}>
+                    <Search placeholder="Tìm kiếm thông báo..." style={{ width: 300 }} />
+                    <Button type="primary" icon={<PlusOutlined />}>
+                        Tạo thông báo mới
+                    </Button>
+                </div>
 
-            <Table columns={columns} dataSource={data} />
+                <Table columns={columns} dataSource={data} />
+            </div>
         </div>
     )
 }
 
 const rootStyles = css`
+  background: var(--gray-soft-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  padding: 1.4rem 2.4rem 0;
+  min-height: calc(100vh - var(--header-height));
+`
+
+const titleStyles = css`
+  padding: 1.4rem;
   background: var(--white-color);
-  padding: var(--spacing-lg);
+  margin-bottom: 0 !important;
+  border-radius: 1rem;
+`
+
+const contentStyles = css`
+  background: var(--white-color);
+  padding: 1.4rem;
+  border-radius: 1rem;
+  flex: 1;
 `
 
 const headerStyles = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-lg);
-`
-
-const searchStyles = css`
-  margin-bottom: var(--spacing-md);
+  margin-bottom: 1.4rem;
 `
