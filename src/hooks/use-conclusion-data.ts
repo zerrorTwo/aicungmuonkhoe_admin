@@ -5,6 +5,8 @@ import { keyToModel } from "@/utils/conclusion-key-mapper";
  * Custom hook to wrap RTK Query and provide Redux-slice-like interface
  * This allows the form component to work with minimal changes
  */
+const EMPTY_ARRAY = [];
+
 export function useConclusionData(
   selectedKey: string,
   ageType?: string,
@@ -22,7 +24,7 @@ export function useConclusionData(
     });
 
   return {
-    conclusionRecommendationList: data?.data || [],
+    conclusionRecommendationList: data?.data || EMPTY_ARRAY,
     loading: isLoading,
     messageInfo: null, // Can be enhanced later for error messages
     error: isError ? error : null,

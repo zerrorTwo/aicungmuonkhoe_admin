@@ -15,6 +15,8 @@ import {
     SettingOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../redux/slices/authSlice'
 
 const { Header, Sider, Content } = Layout
 
@@ -97,6 +99,15 @@ export default function AdminLayout() {
         navigate(`/${e.key}`)
     }
 
+    const dispatch = useDispatch()
+
+    const handleUserMenuClick: MenuProps['onClick'] = (e) => {
+        if (e.key === 'logout') {
+            dispatch(logout())
+            navigate('/login')
+        }
+    }
+
     return (
         <Layout css={rootStyles}>
             <Sider
@@ -135,7 +146,7 @@ export default function AdminLayout() {
                         <Badge count={5} size="small">
                             <BellOutlined css={iconStyles} />
                         </Badge>
-                        <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
+                        <Dropdown menu={{ items: userMenuItems, onClick: handleUserMenuClick }} placement="bottomRight">
                             <Space css={userSpaceStyles}>
                                 <Avatar icon={<UserOutlined />} style={{ backgroundColor: '#1890ff' }} />
                                 <span>Admin</span>
@@ -219,8 +230,6 @@ const userSpaceStyles = css`
 `
 
 const contentStyles = css`
-  margin: 24px;
-  padding: 24px;
   background: var(--white-color);
   border-radius: 8px;
   min-height: calc(100vh - 112px);
