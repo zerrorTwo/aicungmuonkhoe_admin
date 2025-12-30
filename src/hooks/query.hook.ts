@@ -14,6 +14,8 @@ export const useQuery = () => {
     searchParams,
     getParam,
     push,
+    back: () => navigate(-1),
     navigate,
+    getSearchParam: getParam,
   };
 };
