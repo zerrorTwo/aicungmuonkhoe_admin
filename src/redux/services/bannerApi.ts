@@ -11,7 +11,7 @@ export const bannerApi = baseApi.injectEndpoints({
     // Get all banners with pagination and filters
     getBanners: builder.query<PaginatedBannerResult, BannerQuery>({
       query: (params) => ({
-        url: "/admin/banners",
+        url: "/banners",
         params,
       }),
       providesTags: ["Banner"],
@@ -19,14 +19,14 @@ export const bannerApi = baseApi.injectEndpoints({
 
     // Get a single banner by ID
     getBanner: builder.query<ApiResponse<Banner>, number>({
-      query: (id) => `/admin/banners/${id}`,
+      query: (id) => `/banners/${id}`,
       providesTags: (result, error, id) => [{ type: "Banner", id }],
     }),
 
     // Create a new banner using FormData for file upload
     createBanner: builder.mutation<ApiResponse<Banner>, FormData>({
       query: (formData) => ({
-        url: "/admin/banners",
+        url: "/banners",
         method: "POST",
         body: formData,
       }),
@@ -39,7 +39,7 @@ export const bannerApi = baseApi.injectEndpoints({
       { id: number; data: FormData }
     >({
       query: ({ id, data }) => ({
-        url: `/admin/banners/${id}`,
+        url: `/banners/${id}`,
         method: "PATCH",
         body: data,
       }),
@@ -52,7 +52,7 @@ export const bannerApi = baseApi.injectEndpoints({
     // Delete a banner
     deleteBanner: builder.mutation<ApiResponse<boolean>, number>({
       query: (id) => ({
-        url: `/admin/banners/${id}`,
+        url: `/banners/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Banner"],
