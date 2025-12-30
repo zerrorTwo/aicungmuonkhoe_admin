@@ -10,8 +10,11 @@
   --blue-dark-color: #0050b3;
   --blue-light-color: #e6f7ff;
   --green-success-color: #52c41a;
+  --green-dark-color: #135200;
   --red-error-color: #ff4d4f;
   --orange-warning-color: #faad14;
+  --yellow-light-color: #fadb14;
+  --success-color: #52c41a;
 
   /* Layout */
   --header-height: 64px;

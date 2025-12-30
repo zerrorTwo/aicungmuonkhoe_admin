@@ -69,6 +69,7 @@ const menuItems: MenuItem[] = [
     getItem('Quản lý thông báo', 'notifications', <BellOutlined />),
     getItem('Quản lý người dùng', 'users', <UserOutlined />),
     getItem('Quản lý món ăn', 'food', <CoffeeOutlined />),
+    getItem('Quản lý thực phẩm', 'food-v1', <CoffeeOutlined />),
     getItem('Quản lý trang chủ', 'homepage', <HomeOutlined />),
 ]
 
@@ -211,8 +212,9 @@ const headerStyles = css`
   justify-content: space-between;
   border-bottom: 1px solid #f0f0f0;
   position: sticky;
+  overflow: hidden;
   top: 0;
-  z-index: 1;
+  z-index: 1000;
 `
 
 const triggerStyles = css`

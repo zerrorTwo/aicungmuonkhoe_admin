@@ -4,6 +4,7 @@ import HealthManagement from './modules/health/health-management'
 import NotificationManagement from './modules/notification/notification-management'
 import UserManagement from './modules/users/user-management'
 import FoodManagement from './modules/food/food-management'
+import FoodManagementV1 from './modules/food-v1/food-management'
 import HomepageManagement from './modules/home/homepage-management'
 import Login from './modules/auth/login'
 import RequireAuth from './components/common/RequireAuth'
@@ -21,6 +22,7 @@ function App() {
           <Route path="notifications" element={<NotificationManagement />} />
           <Route path="users" element={<UserManagement />} />
           <Route path="food" element={<FoodManagement />} />
+          <Route path="food-v1" element={<FoodManagementV1 />} />
           <Route path="homepage" element={<HomepageManagement />} />
         </Route>
       </Route>
