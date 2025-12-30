@@ -313,6 +313,18 @@ export const ConclusionRecommendationForm = ({
     );
   };
 
+  const handleCancel = () => {
+    // Xóa các items mới chưa lưu (không có dbId) và reset các items đang edit
+    setFormData(
+      (prevData) =>
+        prevData
+          .filter((item) => item.dbId) // Chỉ giữ lại items đã lưu trong DB
+          .map((item) => ({ ...item, isEditable: false })) // Đặt tất cả về chế độ xem
+    );
+    // Reset form về giá trị ban đầu
+    form.resetFields();
+  };
+
   const handleDbpOperator = (id: number, value: string) => {
     setDbpOperatorValues((prev) => ({
       ...prev,
@@ -338,17 +350,17 @@ export const ConclusionRecommendationForm = ({
       newAgeType = "FROM_0_LESS_THAN_5";
     }
 
-    // // Chỉ lấy những item đang editable (item mới hoặc đang chỉnh sửa)
-    // const editableItems = formData.filter((data) => data.isEditable);
+    // Chỉ lấy những item đang editable (item mới hoặc đang chỉnh sửa)
+    const editableItems = formData.filter((data) => data.isEditable);
 
-    // // Kiểm tra nếu không có item nào để lưu
-    // if (editableItems.length === 0) {
-    //   message.warning("Không có dữ liệu mới để lưu!");
-    //   return;
-    // }
+    // Kiểm tra nếu không có item nào để lưu
+    if (editableItems.length === 0) {
+      message.warning("Không có dữ liệu mới để lưu!");
+      return;
+    }
 
     // Format items theo đúng structure của BE (uppercase fields)
-    const formattedItems = formData.map((data) => ({
+    const formattedItems = editableItems.map((data) => ({
       MODEL: model,
       AGE_TYPE: showAge ? newAgeType : values[`age[${data.id}]`],
       INDICATOR_FROM: values[`SBPOperator[${data.id}]`],
@@ -526,16 +538,44 @@ export const ConclusionRecommendationForm = ({
         />
       )}
 
-      {creatable && (
-        <Button
-          icon={<PlusOutlined />}
-          type="primary"
-          onClick={handleAddEntry}
-          css={addUnitBtnStyles}
-        >
-          Thêm kết luận và khuyến nghị
-        </Button>
-      )}
+      <div
+        style={{
+          marginBottom: "1.4rem",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        {creatable && (
+          <Button
+            icon={<PlusOutlined />}
+            type="primary"
+            onClick={handleAddEntry}
+            css={addUnitBtnStyles}
+          >
+            Thêm kết luận và khuyến nghị
+          </Button>
+        )}
+
+        {formData.some((item) => item.isEditable) && (
+          <Row justify="end" css={footerButtonGroupStyles}>
+            <Col>
+              <Space>
+                <Button shape="round" onClick={handleCancel} disabled={loading}>
+                  Huỷ
+                </Button>
+                <Button
+                  onClick={() => form.submit()}
+                  type="primary"
+                  shape="round"
+                  disabled={loading}
+                >
+                  Lưu
+                </Button>
+              </Space>
+            </Col>
+          </Row>
+        )}
+      </div>
       <Spin spinning={loading}>
         <div css={contentAreaStyles}>
           {formData.length > 0 || conclusionRecommendationList.length > 0 ? (
@@ -1062,30 +1102,6 @@ export const ConclusionRecommendationForm = ({
                   )}
                 </div>
               ))}
-              {(conclusionRecommendationList.length > 0 ||
-                formData.length > 0) && (
-                <Row justify="end" css={footerButtonGroupStyles}>
-                  <Col>
-                    <Space>
-                      <Button
-                        shape="round"
-                        onClick={fetchData}
-                        disabled={loading}
-                      >
-                        Huỷ
-                      </Button>
-                      <Button
-                        htmlType="submit"
-                        type="primary"
-                        shape="round"
-                        disabled={loading}
-                      >
-                        Lưu
-                      </Button>
-                    </Space>
-                  </Col>
-                </Row>
-              )}
             </Form>
           ) : (
             <Empty
@@ -1217,7 +1233,7 @@ const BloodPressureDetails = ({
           }}
         />
       </Row>
-      <Row gutter={16}>
+      <Row wrap={false} gutter={16}>
         <Col span={7}>Khuyến nghị: </Col>
         <Col
           dangerouslySetInnerHTML={{
@@ -1249,7 +1265,7 @@ const formStyles = css`
 `;
 
 const addUnitBtnStyles = css`
-  margin: 0 0 1.4rem 1.4rem;
+  margin-left: 1.4rem;
 `;
 
 const dividerStyles = css`
@@ -1257,7 +1273,8 @@ const dividerStyles = css`
 `;
 
 const footerButtonGroupStyles = css`
-  margin-top: 2.4rem;
+  display: inline-block;
+  margin-right: 1.4rem;
   button {
     width: 8rem;
   }

@@ -39,7 +39,7 @@ export const INDICATOR_OPTIONS: DropdownOption[] = [
   { code: "LESS_THAN", name: "<", type: "INDICATOR" },
   { code: "LESS_THAN_OR_EQUAL", name: "≤", type: "INDICATOR" },
   { code: "GREATER_THAN", name: ">", type: "INDICATOR" },
-  { code: "GREATER_THAN_OR_EQUAL", name: "≥", type: "INDICATOR" },
+  { code: "MORE_THAN_OR_EQUAL", name: "≥", type: "INDICATOR" },
   { code: "ABOUT", name: "Khoảng", type: "INDICATOR" },
 ];
 
