@@ -68,7 +68,7 @@ const menuItems: MenuItem[] = [
     getItem('Quản lý chỉ số sức khỏe', 'health', <HeartOutlined />),
     getItem('Quản lý thông báo', 'notifications', <BellOutlined />),
     getItem('Quản lý người dùng', 'users', <UserOutlined />),
-    getItem('Quản lý món ăn', 'food', <CoffeeOutlined />),
+    getItem('Quản lý món ăn', 'dish', <CoffeeOutlined />),
     getItem('Quản lý thực phẩm', 'food-v1', <CoffeeOutlined />),
     getItem('Quản lý trang chủ', 'homepage', <HomeOutlined />),
 ]
